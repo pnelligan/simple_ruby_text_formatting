@@ -17,8 +17,7 @@ module TextHelper
         target = nil
       end
       target
-    }
-    targets.compact.flatten.each {|target| 
+    }.compact.flatten.each {|target| 
       html.sub!(target, target+' target="_blank"')
     }
     html.html_safe
