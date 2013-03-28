@@ -6,15 +6,20 @@ module TextHelper
     make_targets_blank(text_auto_linked)
   end
 
+  protected
+
   def make_targets_blank html
     targets = html.split('<a')
-    targets.each {|target|
+    targets.collect! {|target| 
       if legit = target.split('href=')[1]
-        replaced = legit.split('>')[0]
-        unless replaced.match("target")
-          html.sub!(replaced, replaced+' target="_blank"')
-        end
+        target = legit.split('>')[0]
+      else
+        target = nil
       end
+      target
+    }
+    targets.compact.flatten.each {|target| 
+      html.sub!(target, target+' target="_blank"')
     }
     html.html_safe
   end
