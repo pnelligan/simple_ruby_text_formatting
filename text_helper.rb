@@ -20,5 +20,3 @@ module TextHelper
   end
   
 end
-
-#usage: format_text_as_html(some_text, :html => { :target => "_blank" })
